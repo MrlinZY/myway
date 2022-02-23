@@ -1,3 +1,4 @@
+//this program aims to test your laptop is big or small
 #include <stdlib.h>
 #include <stdio.h>
 int main(){
