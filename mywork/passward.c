@@ -2,10 +2,6 @@
 
 #include <stdlib.h>
 
-//this is a test
-
-//this is a new test
-
 int main() {
     int n = 0;
     int big = 0;
