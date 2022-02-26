@@ -7,11 +7,6 @@ typedef struct a {
     struct a* top;
 }Slink;//创建一个链栈，包含头指针以及数据域
 
-void init(Slink* phead) {
-    phead->date=0;
-    phead->top=NULL;
-}//初始化链栈
-
 void menu() {
     cout<<"please choose"<<endl;
     cout<<"  1. push  "<<endl;
@@ -21,51 +16,34 @@ void menu() {
 
 void push(Slink* phead, int n) {
     Slink* n_ew;
-    Slink* cur;
-    cur=phead;
     n_ew=(Slink*)malloc(sizeof(Slink));
-    
-    if (phead->top==NULL) {
-        /* code */
-        phead->date=n;
-        phead->top=n_ew;
-        n_ew->top=NULL;
-    }
-    else {
-        while(cur->top !=NULL) {
-            cur=cur->top;
-        }
-        cur->date=n;
-        cur->top=n_ew;
-        n_ew->top=NULL;
-    }
+    n_ew->date=n;
+    n_ew->top=phead->top;
+    phead->top=n_ew;
+    return;
 }//压栈
 
 void cou(Slink* phead) {
     Slink* cur=phead;
     while (cur->top!=NULL){
         /* code */
-        cout<<cur->date<<endl;
         cur=cur->top;
+        cout<<cur->date<<endl;
     }
+        cur=cur->top;
 }//显示栈元素
 
 void pop(Slink* phead){
-    Slink* cur=phead;
-    Slink* before=phead;
-        while(cur->top !=NULL) {
-            before=cur;
-            cur=cur->top;
-        }
+    Slink* cur=phead->top;
+    phead->top=phead->top->top;
     free(cur);
-    before->top=NULL;
 }//出栈
 
 int main() {
-    Slink* pheadlist;//创建头部指针
+    Slink* pheadlist;//创建头部指针，或者说叫做栈顶
     pheadlist=(Slink*)malloc(sizeof(Slink));//为指针开辟一块空间
+    pheadlist->top=NULL;
     int n;
-    init(pheadlist);
     do {
         menu();
         int input;
